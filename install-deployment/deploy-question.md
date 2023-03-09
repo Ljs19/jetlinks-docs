@@ -6,20 +6,24 @@
     <td><a href="/install-deployment/deploy-question.html#项目打包时有test文件校验不通过">项目打包时有Test文件校验不通过</a></td>
 </tr>
 <tr>
-   <td><a href="/install-deployment/deploy-question.html#数据库不存在">更换为mysql数据库unknown database jetlinks</a></td>
+   <td><a href="/install-deployment/deploy-question.html#mvn打包失败">mvn package -DskipTests打包失败</a></td>
    <td><a href="/install-deployment/deploy-question.html#更换为mysql数据库启动失败">更换为mysql数据库启动失败</a></td>
 </tr>
 <tr>
    <td><a href="/install-deployment/deploy-question.html#使用mysql后项目启动报sslhandshakeexception">使用mysql后项目启动报SSLHandshakeException</a></td>
-   <td><a href="/install-deployment/deploy-question.html#首次启动时抛出表已存在异常">首次启动时抛出表已存在异常</a></td>
+   <td><a href="/install-deployment/deploy-question.html#使用mysql项目启动报错">使用mysql后项目启动报No appropriate protocol</a></td>
 </tr>
 <tr>
-   <td><a href="/install-deployment/deploy-question.html#启动时抛出noauth-authentication-required">启动时抛出"NOAUTH Authentication required"</a></td>
+   <td><a href="/install-deployment/deploy-question.html#数据库不存在">更换为mysql数据库unknown database jetlinks</a></td>
    <td><a href="/install-deployment/deploy-question.html#windows运行jar抛出win32exception">windows运行jar抛出win32exception</a></td>
 </tr>
 <tr>
    <td><a href="/install-deployment/deploy-question.html#启动前端登录后无导航和菜单信息">启动前端登录后无导航和菜单信息</a></td>
    <td><a href="/install-deployment/deploy-question.html#上传协议包报无法加载的错误">上传协议包无法加载</a></td>
+</tr>
+<tr>
+   <td><a href="/install-deployment/deploy-question.html#首次启动时抛出表已存在异常">首次启动时抛出表已存在异常</a></td>
+   <td><a href="/install-deployment/deploy-question.html#启动时抛出noauth-authentication-required">启动时抛出"NOAUTH Authentication required"</a></td>
 </tr>
 </table>
 
@@ -60,6 +64,24 @@ mvnw.cmd clean package '-Dmaven.test.skip=true'
 <img src="./images/skip-test.png">
 </div>
 
+
+#### mvn打包失败
+
+<div class='explanation warning'>
+  <p class='explanation-title-warp'>
+    <span class='iconfont icon-bangzhu explanation-icon'></span>
+    <span class='explanation-title font-weight'>问题</span>
+  </p>
+
+  <p>Q：mvn package -DskipTests打包失败，提示
+
+`Faild to execute goal xxxx on project xxx`
+。</p>
+
+  <p>A：查看是否是maven版版本过高，建议使用3.6.3或者idea自带maven进行编译`</p>
+
+</div>
+
 #### 更换为mysql数据库，提示数据库不存在
 
 <div class='explanation warning'>
@@ -88,6 +110,24 @@ mvnw.cmd clean package '-Dmaven.test.skip=true'
 
 </div>
 
+#### 使用mysql项目启动报错
+
+<div class='explanation warning'>
+  <p class='explanation-title-warp'>
+    <span class='iconfont icon-bangzhu explanation-icon'></span>
+    <span class='explanation-title font-weight'>问题</span>
+  </p>
+
+  <p>Q：程序启动提示：
+
+`No appropriate protocol (protocol is disabled or cipher suites are inappropriate)` 。</p>
+
+  <p>A：建议检查url路径是否携带<span class='explanation-title font-weight'>ssl=false</span>，参考案例：
+
+`r2dbc:mysql://localhost:3306/表名?ssl=false&serverZoneId=Asia/Shanghai`</p>
+
+</div>
+
 #### 首次启动时抛出表已存在异常
 
 <div class='explanation warning'>
@@ -96,7 +136,7 @@ mvnw.cmd clean package '-Dmaven.test.skip=true'
     <span class='explanation-title font-weight'>问题</span>
   </p>
 
-  <p>Q：首次启动时抛出"Table 'xx' already exists"异常。</p>
+  <p>Q：首次启动时抛出<span class='explanation-title font-weight'>Table 'xx' already exists</span>异常。</p>
   <p>A：删除数据库并重新创建数据然后重启项目，由项目自行创建表及表结构。</p>
 </div>
 
@@ -179,6 +219,44 @@ A：
 例如 `http://192.168.66.177:9000/api` 。
 
 </div>
+
+#### 使用mysql项目启动报错
+
+<div class='explanation warning'>
+  <p class='explanation-title-warp'>
+    <span class='iconfont icon-bangzhu explanation-icon'></span>
+    <span class='explanation-title font-weight'>问题</span>
+  </p>
+
+  <p>Q：程序启动提示：
+
+`No appropriate protocol (protocol is disabled or cipher suites are inappropriate)` 。</p>
+
+  <p>A：建议检查url路径是否携带ssl=false，参考案例：
+
+`r2dbc:mysql://localhost:3306/表名?ssl=false&serverZoneId=Asia/Shanghai`</p>
+
+</div>
+
+#### mvn打包失败
+
+<div class='explanation warning'>
+  <p class='explanation-title-warp'>
+    <span class='iconfont icon-bangzhu explanation-icon'></span>
+    <span class='explanation-title font-weight'>问题</span>
+  </p>
+
+  <p>Q：mvn package -DskipTests打包失败，提示
+
+`Faild to execute goal xxxx on project xxx`
+ 。</p>
+
+  <p>A：查看是否是maven版版本过高，建议使用3.6.3或者idea自带maven进行编译`</p>
+
+</div>
+
+
+
 
 [//]: # (#### 上传协议包抛出无法加载协议异常)
 

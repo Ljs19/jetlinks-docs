@@ -4,19 +4,19 @@
 
 启动jetlinks之前，请先确定已经安装好以下环境:
 
-1. JDK 1.8.0_2xx (
-   需要小版本号大于200) <a href='https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=hotspot'>下载jdk</a>
-2. Redis 5.x
-3. PostgreSQL 11 或者 mysql 5.7 +
-4. ElasticSearch 6.8-7.x <a href='https://www.elastic.co/cn/downloads/elasticsearch'>下载</a>
+1.  <a href='https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=hotspot'>JDK 1.8.0_2xx</a>  (需要小版本号大于200) 
+2.  <a href='https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/'>Maven 3.6.x</a>
+3. Redis 5.x
+4. PostgreSQL 11 或者 mysql 5.7 +
+5. ElasticSearch 6.8-7.x 
 
 <div class='explanation info'>
   <p class='explanation-title-warp'>
     <span class='iconfont icon-tishi explanation-icon'></span>
     <span class='explanation-title font-weight'>说明</span>
   </p>
-
-   <p>如果你是linux或者macOS系统，或者是windows10， 推荐<a href='./ide-docker-start.html'>使用docker安装所需环境</a>。
+   <p>1. JDK和Maven的版本过高或过低可能会导致拉取jar包失败。</p>
+   <p>2. 如果你是linux或者macOS系统，或者是windows10， 推荐<a href='./ide-docker-start.html'>使用docker安装所需环境</a>。
    项目启动后会自动创建表结构,但是数据库需要手动创建。</p>
 
 </div>
@@ -29,33 +29,37 @@
     <td><a href="/install-deployment/deploy-question.html#项目打包时有test文件校验不通过">项目打包时有Test文件校验不通过</a></td>
 </tr>
 <tr>
-   <td><a href="/install-deployment/deploy-question.html#数据库不存在">更换为mysql数据库unknown database jetlinks</a></td>
+   <td><a href="/install-deployment/deploy-question.html#mvn打包失败">mvn package -DskipTests打包失败</a></td>
    <td><a href="/install-deployment/deploy-question.html#更换为mysql数据库启动失败">更换为mysql数据库启动失败</a></td>
 </tr>
 <tr>
    <td><a href="/install-deployment/deploy-question.html#使用mysql后项目启动报sslhandshakeexception">使用mysql后项目启动报SSLHandshakeException</a></td>
-   <td><a href="/install-deployment/deploy-question.html#首次启动时抛出表已存在异常">首次启动时抛出表已存在异常</a></td>
+   <td><a href="/install-deployment/deploy-question.html#使用mysql项目启动报错">使用mysql后项目启动报No appropriate protocol</a></td>
 </tr>
 <tr>
-   <td><a href="/install-deployment/deploy-question.html#启动时抛出noauth-authentication-required">启动时抛出"NOAUTH Authentication required"</a></td>
+   <td><a href="/install-deployment/deploy-question.html#数据库不存在">更换为mysql数据库unknown database jetlinks</a></td>
    <td><a href="/install-deployment/deploy-question.html#windows运行jar抛出win32exception">windows运行jar抛出win32exception</a></td>
 </tr>
 <tr>
    <td><a href="/install-deployment/deploy-question.html#启动前端登录后无导航和菜单信息">启动前端登录后无导航和菜单信息</a></td>
    <td><a href="/install-deployment/deploy-question.html#上传协议包报无法加载的错误">上传协议包无法加载</a></td>
 </tr>
+<tr>
+   <td><a href="/install-deployment/deploy-question.html#首次启动时抛出表已存在异常">首次启动时抛出表已存在异常</a></td>
+   <td><a href="/install-deployment/deploy-question.html#启动时抛出noauth-authentication-required">启动时抛出"NOAUTH Authentication required"</a></td>
+</tr>
 </table>
 
 ## 获取源码
 
-1. 进入<a href='https://gitee.com/jetlinks/jetlinks-community'>Gitee</a>
-2. Star仓库，此处以社区版为例，企业版源码请移步<a href="/dev-guide/pull-code.html">源码获取</a>。
-   ![star.png](./images/star.png)
-3. 下载源代码,建议使用`git clone`下载源代码,注意代码分支，`master`为最新的稳定分支。
-   ![download.png](./images/git-comm.png)
+1. 进入<a href='https://github.com/jetlinks/jetlinks-community'>Github</a>
+2. 下载源代码,建议使用`git clone`下载源代码,注意代码分支，`master`为最新的稳定分支。
+
+   获取源码详细操作可参考<a href="/dev-guide/pull-code.html#源码获取">获取源码</a></td>
+   ![download.png](./images/git-community.png)
 
 ```bash
-git clone -b master https://gitee.com/jetlinks/jetlinks-community.git
+git clone -b master git@github.com:jetlinks/jetlinks-community.git
 cd jetlinks-community
 # 社区版子模块需要指定为master， 
 git pull && git submodule init && git submodule update && git submodule foreach git checkout master && git submodule foreach git pull origin master
@@ -120,7 +124,7 @@ java -jar ./jetlinks-standalone/target/jetlinks-standalone.jar --spring.elastics
 
 ### 使用jar包启动
 
-如果相关环境的ip不是本地,或者端口不是默认端口.请先修改配置文件.
+如果相关环境的ip不是本地,或者端口不是默认端口.请先修改配置文件。
 
 linux或者macOS环境下打包:
 
@@ -236,7 +240,7 @@ http://host.docker.internal:8844/ 为后台服务的地址,请根据情况修改
 下载前端代码:
 
 ```bash
-git clone -b 2.0 https://gitee.com/jetlinks/jetlinks-ui-antd.git
+git clone -b 2.0 git@github.com:jetlinks/jetlinks-ui-antd.git
 cd jetlinks-ui-antd
 ```
 
